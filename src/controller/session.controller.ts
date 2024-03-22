@@ -1,9 +1,10 @@
 import { UserDocument } from '@models/user.model'
-import { createSession } from '@service/session.service'
+import { createSession, findSessions } from '@service/session.service'
 import { findUserByEmail, validatePassword } from '@service/user.service'
 import { signJwt } from '@utils/jwt.utils'
 import config from 'config'
 import { Request, Response } from 'express'
+import { get } from 'lodash'
 
 export const createUserSessionHandler = async (
   req: Request<{}, {}, UserDocument>,
@@ -35,4 +36,12 @@ export const createUserSessionHandler = async (
   )
 
   return res.send({ assessToken, refreshToken })
+}
+
+export const getUserSessionHandler = async (req: Request, res: Response) => {
+  console.log(res.locals.user)
+  const userId = get(res.locals.user, '_id', '')
+
+  const session = await findSessions({ user: userId, valid: false })
+  return res.send(session)
 }

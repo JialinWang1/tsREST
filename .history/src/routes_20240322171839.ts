@@ -4,7 +4,6 @@ import {
 } from '@controller/session.controller'
 import { createUserHandler } from '@controller/user.controller'
 import { deserializeUser } from '@middleware/deserializeUser'
-import { requireUser } from '@middleware/requireUser'
 import { validateResource } from '@middleware/validateResouce'
 import { createUserSessionSchema } from '@schema/session.schema'
 import { createUserSchema } from '@schema/user.schema'
@@ -15,17 +14,13 @@ const routes = (app: Express) => {
     return res.sendStatus(200)
   })
 
-  app.post(
-    '/api/create-user',
-    validateResource(createUserSchema),
-    createUserHandler,
-  )
+  app.post('/api/users', validateResource(createUserSchema), createUserHandler)
   app.post(
     '/api/sessions',
     validateResource(createUserSessionSchema),
     createUserSessionHandler,
   )
-  app.get('/api/sessions', requireUser, getUserSessionHandler)
+  app.get('/api/sessions', getUserSessionHandler)
 }
 
 export { routes }

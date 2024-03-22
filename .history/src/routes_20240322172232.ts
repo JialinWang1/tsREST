@@ -15,11 +15,7 @@ const routes = (app: Express) => {
     return res.sendStatus(200)
   })
 
-  app.post(
-    '/api/create-user',
-    validateResource(createUserSchema),
-    createUserHandler,
-  )
+  app.post('/api/users', validateResource(createUserSchema), createUserHandler)
   app.post(
     '/api/sessions',
     validateResource(createUserSessionSchema),
