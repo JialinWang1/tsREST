@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["*/*"],
+      "@utils/*": ["src/utils/*"],
+      "@models/*": ["src/models/*"],
+      "@controller/*": ["src/controller/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@service/*": ["src/service/*"],
+      "@schema/*": ["src/schema/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

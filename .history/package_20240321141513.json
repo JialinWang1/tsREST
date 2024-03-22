@@ -12,6 +12,7 @@
     "mongoose": "^8.2.2",
     "nanoid": "^5.0.6",
     "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -26,19 +27,7 @@
     "@types/nanoid": "^3.0.0",
     "@types/node": "^20.11.30",
     "@types/pino": "^7.0.5",
-    "pino-pretty": "^11.0.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^3.2.4",
     "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.3"
-  },
-  "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register ./src/app.ts"
-  },
-  "dependenciesMeta": {
-    "prettier-plugin-organize-imports@3.2.4": {
-      "unplugged": true
-    }
   }
 }
