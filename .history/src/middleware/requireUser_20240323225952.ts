@@ -5,7 +5,7 @@ export const requireUser = (
   res: Response,
   next: NextFunction,
 ) => {
-  console.log('res.locals: ', res.locals)
+  console.log(res.locals)
 
   if (!res.locals.user) {
     return res.sendStatus(403)

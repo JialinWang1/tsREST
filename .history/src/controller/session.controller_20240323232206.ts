@@ -20,16 +20,17 @@ export const createUserSessionHandler = async (
   }
 
   const session = await createSession(user._id, req.get('user-agent'))
+
   const assessToken = signJwt(
     {
-      ...user.toObject(),
+      user: user._id,
       session: session._id,
     },
     { expiresIn: config.get('assessTokenExpiration') },
   )
   const refreshToken = signJwt(
     {
-      ...user.toObject(),
+      ...user,
       session: session._id,
     },
     { expiresIn: config.get('refreshTokenExpiration') },
@@ -40,6 +41,7 @@ export const createUserSessionHandler = async (
 
 export const getUserSessionHandler = async (req: Request, res: Response) => {
   const userId = get(res.locals.user, '_id', '')
+  console.log('userID: ' + userId)
   const session = await findSessions({ user: userId, valid: true })
   return res.send(session)
 }

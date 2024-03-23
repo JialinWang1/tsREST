@@ -6,6 +6,7 @@ import { omit } from 'lodash'
 export const createUserHandler = async (req: Request, res: Response) => {
   try {
     const user = await createUser(req.body)
+    console.log('user: ' + typeof user)
     return res.send(omit(user, 'password'))
   } catch (error) {
     log.error(error)
